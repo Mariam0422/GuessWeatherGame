@@ -1,24 +1,28 @@
 import { useState, useEffect } from 'react';
-import { API_KEY } from '../core/constant';
+import { API_KEY, cityArray } from '../core/constant';
 import { getRandomElementArr } from '../core/helpers';
+import ResultComponent from '../resultComponent';
 import './index.css';
+
 const WeatherData =  () => {
-    const [weatherTemp, setWeatherTemp] = useState(0);
+    const [weatherTemp, setWeatherTemp] = useState(Infinity);
     const [currentCity, setCurrentCity] = useState("");
     const [answer, setAnswer] = useState(null);
-    const [value, setValue] = useState(0);
-    const [isVisibility, setIsVisibility] = useState(false);
-    const cityArray = ["Yerevan", "London", "Sydney", "Moscow", "Madrid", "Cuba", "Italy"];    
+    const [value, setValue] = useState();
+    const [currentArray, setCurrentArray ] = useState([]);
+    const [results, setResults] = useState([]);
 
     const gameAgain = () => {
-      const randomCity = getRandomElementArr(cityArray);
-      setCurrentCity(randomCity);
-      setValue("");
-      setIsVisibility(false);
-    }
-    useEffect((() => {
-      gameAgain();
-    }), [])
+      
+        let availableCities = cityArray.filter(city => !currentArray.includes(city));   
+         
+        const randomCity = getRandomElementArr(availableCities);
+        setCurrentCity(randomCity);  
+     
+    };
+   useEffect((() => {
+    gameAgain();
+   }), [])
   
     useEffect(() => {
       if (currentCity === "") return;       
@@ -41,28 +45,51 @@ const WeatherData =  () => {
     const handleInput = (e) => {
      setValue(e.target.value);
     }
-    const handleCheck = () => {
-      if(Math.abs(weatherTemp - value) <= 4){
-        setAnswer(true)
-      }
-      else{
-        setAnswer(false)
-      }
-     setIsVisibility(true)
-    }
+
+    const handleCheck = () => {      
+      if(currentCity === "") { return}
+      let correct = (Math.abs(weatherTemp - value) <= 4);
+      setAnswer(correct);
+      
+      const result = {
+          city: currentCity,
+          answer: correct,
+          temp: weatherTemp
+      };
+      setResults([...results, result]);
+  
+      setCurrentArray(prevArray => {
+          const newArray = [...prevArray, currentCity];          
  
-   
+          if (newArray.length >= 5) {
+              console.log("game finish");
+              setCurrentCity("");      
+              return newArray; 
+          } else {             
+              let availableCities = cityArray.filter(city => !newArray.includes(city));
+              const randomCity = getRandomElementArr(availableCities);
+              setCurrentCity(randomCity);
+              return newArray;
+          }
+      });  
+      setValue("");
+  };
+     
+    
+
+
     return (
+       <div>
       <div className='main'>
        <h2> {currentCity} </h2>
-      <input  value={value} onChange={handleInput} type='text'/>
-      <div>
-      <h3 className='weatherTemp' style={{display: isVisibility ? "block" :  "none"}}>{weatherTemp}</h3>     
-      <button onClick={handleCheck}>Check</button>
-      { isVisibility && (answer ? "right answer" : "wrong answer")} 
-      <button onClick={gameAgain}>Next</button>
-      </div>
-      </div>
+       <input className='input'  value={value} onChange={handleInput} type='text'/>     
+  
+      <button className='button' onClick={handleCheck}>Check</button>           
+      </div>     
+      <ResultComponent results ={results}/>
+      </div>  
+      
+     
     )
   }
   

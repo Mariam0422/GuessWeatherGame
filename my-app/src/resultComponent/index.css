@@ -1,0 +1,17 @@
+.row{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 24px;
+    border:  1px solid black;
+    padding: 5px;
+}
+
+.result{
+    margin-top: 100px;
+    width: 400px;
+    border: 1px solid black;
+    padding: 10px 20px;
+    background-color: white;
+    min-height: 50px;
+}

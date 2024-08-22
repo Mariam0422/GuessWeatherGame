@@ -1,7 +1,18 @@
 .main{
-    width: 300px;
+    width: 400px;
     text-align: center;
-    border: 1px solid black;
-    padding: 20px;
-   background-color: rgba(116, 178, 158, 0.833)y;
+    border: 1px solid rgb(100, 205, 172);
+    padding:20px;
+    background-color: rgba(165, 223, 205, 0.833);
+}
+.input{
+    width: 380px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.button{
+   padding: 5px;
+   background: white;
+   border-radius: 5px;
+   align-items: center;
 }

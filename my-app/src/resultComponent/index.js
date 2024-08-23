@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import './index.css';
 
-const ResultComponent = ({results}) => {
+const ResultComponent = ({results}) => {    
+ 
 return (
     <div className='result'>
     {results.map((item, index) => {
+   
      return (
         <div className='row' key={index}>
         {item.city}
@@ -14,6 +17,7 @@ return (
         </div>
      )
     })}
+    
     </div>
 )
 }

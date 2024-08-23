@@ -1,18 +1,36 @@
 .main{
-    width: 400px;
+    width: 500px;
     text-align: center;
-    border: 1px solid rgb(100, 205, 172);
+    border: 1px solid rgb(16, 210, 110);
     padding:20px;
-    background-color: rgba(165, 223, 205, 0.833);
+    background-color: rgba(73, 73, 73, 0.619);
+    border-radius: 10px;
+    color: rgb(16, 210, 110);
+    
 }
 .input{
-    width: 380px;
+    width: 480px;
     padding: 5px;
     margin-bottom: 20px;
+    min-height: 30px;
 }
 .button{
-   padding: 5px;
-   background: white;
+   padding: 10px 15px;
+   background: rgb(16, 210, 110);
    border-radius: 5px;
    align-items: center;
+   font-size: 15px;
+   border: none;
+   box-shadow: 2px 4px 3px rgb(71, 71, 71);
+   margin-top: 10px;
+}
+.button:hover{
+ cursor: pointer;
+ background-color: white;
+ color: rgb(16, 210, 110);
+}
+
+.blur{
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
 }

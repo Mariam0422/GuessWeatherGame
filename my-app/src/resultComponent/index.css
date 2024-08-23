@@ -3,15 +3,18 @@
     justify-content: space-between;
     gap: 10px;
     font-size: 24px;
-    border:  1px solid black;
+    border:  1px solid rgb(242, 242, 242);
     padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
 
 .result{
     margin-top: 100px;
-    width: 400px;
+    width: 500px;
     border: 1px solid black;
     padding: 10px 20px;
-    background-color: white;
-    min-height: 50px;
+    background-color: rgba(54, 53, 53, 0.753);
+    border-radius: 10px;
+    color: white;    
 }

@@ -30,6 +30,7 @@ const WeatherData =  () => {
         setError("");
         gameAgain();
     }
+    console.log(answer);
     const gameAgain = () => {
       
         let availableCities = cityArray.filter(city => !currentArray.includes(city));   

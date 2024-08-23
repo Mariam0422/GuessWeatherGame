@@ -9,7 +9,16 @@ const ModalWindow = ({gameResult, setIsModal, resetGame}) => {
              }}>X</button>
         </div>
         <div className='resultAnswer'>
-        {gameResult}
+        {gameResult 
+        ? <div>
+         <h3>Congratulations</h3>   
+         <h3>You Won!!!</h3>   
+        </div> 
+        : <div>
+            <h3>You Lost!</h3>
+            <h3>Try Again</h3>
+         </div>
+         }
         </div>        
         </div>
     )

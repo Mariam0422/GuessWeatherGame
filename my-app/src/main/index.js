@@ -13,9 +13,10 @@ const WeatherData =  () => {
     const [currentArray, setCurrentArray ] = useState([]);
     const [results, setResults] = useState([]);
     const [visibility, setVisibility] = useState(false);
-    const [gameResult, setGameResult] = useState(false);
+    const [gameResult, setGameResult] = useState(null);
     const [isModal, setIsModal] = useState("");
     const [error, setError] = useState("");
+    const [hasGameStarted, setHasGameStarted] = useState(false);
 
     const resetGame = () => {
         setWeatherTemp(Infinity);
@@ -39,9 +40,10 @@ const WeatherData =  () => {
         setCurrentCity(randomCity);  
      
     };
-   useEffect((() => {
-    gameAgain();
-   }), [])
+    if(!hasGameStarted){
+        gameAgain();
+        setHasGameStarted(true);
+    }
   
     useEffect(() => {
       if (currentCity === "") return;       
@@ -89,9 +91,9 @@ const WeatherData =  () => {
               setCurrentCity("");   
               const correctAnswers = newArray.filter((_, index) => results[index]?.answer === true).length;
               if (correctAnswers >= 3) {
-                setGameResult("You Won!!!");
+                setGameResult(true);
             } else {
-                setGameResult("You Lost!");
+                setGameResult(false);
             }  
             setIsModal(true); 
               return newArray; 

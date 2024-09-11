@@ -123,6 +123,7 @@ const WeatherData = () => {
     <div>
       <div className={isModal ? "blur" : ""}>
         <div className="main">
+        <p style={{color: "white"}}>Guess the weather in </p>
           <h2> {currentCity} </h2>
           <input
             className="input"
